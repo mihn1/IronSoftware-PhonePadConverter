@@ -7,13 +7,14 @@
 
         while (ReadNextChunk(stream, out char outChar))
         {
-            if (outChar == (char)CharacterType.EndOfInput) break;
+            if (outChar == (char)CharacterType.EndOfInput) break; // Exception case
             else if (outChar == (char)CharacterType.Deletion)
             {
                 if (output.Length > 0) output.Remove(output.Length - 1, 1);
             }
             else if (outChar is not ((char)CharacterType.SentenceEnd or (char)CharacterType.NewCharacter))
             {
+                // Append to output if outChar is a valid character
                 output.Append(outChar == (char)CharacterType.Space ? ' ' : outChar);
             }
         }
@@ -36,49 +37,47 @@
             outChar = (char)CharacterType.EndOfInput;
             return false;
         }
-        char nextChar = (char)raw;
 
+        char nextChar = (char)raw;
         char startChar = nextChar;
         outChar = nextChar;
 
         // check end chunk conditions
-        if (outChar is (char)CharacterType.Deletion or
-                        (char)CharacterType.SentenceEnd or
-                        (char)CharacterType.NewCharacter or
-                        (char)CharacterType.Space)
-        {
-            return true;
-        }
+        if (IsChunkBreakChar(outChar)) return true;
 
-        int count = 0;
+        int sameCharCount = 0;
 
         while (true)
         {
             // If we hit a break char, put the position back and return
-            if (nextChar != startChar ||
-                nextChar is (char)CharacterType.Deletion or
-                            (char)CharacterType.SentenceEnd or
-                            (char)CharacterType.NewCharacter or
-                            (char)CharacterType.Space)
+            // A different digit char also ends the current chunk
+            if (nextChar != startChar || IsChunkBreakChar(nextChar))
             {
                 stream.Seek(-1, SeekOrigin.Current);
                 return true;
             }
 
+            // nextChar should be a valid digit here
             if (!char.IsDigit(nextChar)) throw new ArgumentException("Invalid character in input");
-            outChar = GetPhonePadCharacter(startChar, count);
-            count++;
+            outChar = GetPhonePadCharacter(startChar, sameCharCount);
+            sameCharCount++;
 
             raw = stream.ReadByte();
             if (raw == -1)
             {
-                // chunk has not finished, outpout the temp char but put the position back to what is was
-                stream.Seek(-count, SeekOrigin.Current);
+                // chunk has not finished, output the temp char but put the position back to that start of this chunk
+                stream.Seek(-sameCharCount, SeekOrigin.Current);
                 return false;
             }
             nextChar = (char)raw;
         }
     }
+
+    static bool IsChunkBreakChar(char c) => 
+        c is (char)CharacterType.Deletion or 
+        (char)CharacterType.SentenceEnd or 
+        (char)CharacterType.NewCharacter or 
+        (char)CharacterType.Space;
 
     static char GetPhonePadCharacter(char startChar, int count) => startChar switch
     {

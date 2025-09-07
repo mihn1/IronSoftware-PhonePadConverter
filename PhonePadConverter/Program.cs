@@ -38,7 +38,7 @@ while (true) // Main program loop
         inputStream.WriteByte((byte)ch);
         inputStream.Seek(originalPos, SeekOrigin.Begin);
 
-        while (true)
+        while (true) // Character loop
         {
             if (OldPhonePadConverter.ReadNextChunk(inputStream, out char outChar))
             {
