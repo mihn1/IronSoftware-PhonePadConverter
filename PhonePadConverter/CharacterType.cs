@@ -3,7 +3,7 @@
     Deletion = '*',
     NewCharacter = ' ',
     SentenceEnd = '#',
-    EndOfInput = '$',
+    EndOfInput = '$', // internal use to indicate end of input stream (exception case)
     Empty = '\0',
     Space = '0'
 }

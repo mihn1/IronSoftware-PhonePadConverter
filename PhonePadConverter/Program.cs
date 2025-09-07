@@ -66,7 +66,7 @@ while (true) // Main program loop
             }
             else
             {
-                // chunk not completed
+                // chunk not completed, set temp char to show in real-time console
                 tempChar = outChar;
             }
 

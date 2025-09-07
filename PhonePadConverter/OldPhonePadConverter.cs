@@ -17,6 +17,7 @@
                 output.Append(outChar == (char)CharacterType.Space ? ' ' : outChar);
             }
         }
+
         return output.ToString();
     }
 
@@ -53,6 +54,7 @@
 
         while (true)
         {
+            // If we hit a break char, put the position back and return
             if (nextChar != startChar ||
                 nextChar is (char)CharacterType.Deletion or
                             (char)CharacterType.SentenceEnd or
