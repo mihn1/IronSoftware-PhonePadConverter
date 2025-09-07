@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhonePadConverter", "PhonePadConverter\PhonePadConverter.csproj", "{C91B7C5C-AE48-E4A6-4E92-51539318623D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhonePadConverter.Tests", "PhonePadConverter.Tests\PhonePadConverter.Tests.csproj", "{889FE4C6-8402-AC45-7C5D-4993F09DD805}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C91B7C5C-AE48-E4A6-4E92-51539318623D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C91B7C5C-AE48-E4A6-4E92-51539318623D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C91B7C5C-AE48-E4A6-4E92-51539318623D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C91B7C5C-AE48-E4A6-4E92-51539318623D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{889FE4C6-8402-AC45-7C5D-4993F09DD805}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{889FE4C6-8402-AC45-7C5D-4993F09DD805}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{889FE4C6-8402-AC45-7C5D-4993F09DD805}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{889FE4C6-8402-AC45-7C5D-4993F09DD805}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
